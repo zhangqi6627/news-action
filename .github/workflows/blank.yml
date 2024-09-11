@@ -55,33 +55,33 @@ jobs:
 #           from: GitHub Actions
 #           content_type: text/html
             
-      - name: '企业微信webhook'
-        uses: MeanZhang/wecom-group-robot@v1.2
-        with:
-            key: ${{ secrets.WECOM_WEBHOOK_KEY }}
-            msgtype: text
-            content: ${{ env.FILE_TEXT }}
+      # - name: '企业微信webhook'
+      #   uses: MeanZhang/wecom-group-robot@v1.2
+      #   with:
+      #       key: ${{ secrets.WECOM_WEBHOOK_KEY }}
+      #       msgtype: text
+      #       content: ${{ env.FILE_TEXT }}
 
-      - name: '发送到中间件'
-        uses: chf007/action-wechat-work@master
-        with:
-          msgtype: text
-          content: |
-            ${{env.FILE_TEXT}}
-        env:
-          WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECHATQUN_WEBHOOK }}
+      # - name: '发送到中间件'
+      #   uses: chf007/action-wechat-work@master
+      #   with:
+      #     msgtype: text
+      #     content: |
+      #       ${{env.FILE_TEXT}}
+      #   env:
+      #     WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECHATQUN_WEBHOOK }}
 
-      - name: '发送到TG频道'
-        run: |
-          python send_to_telegram.py
-        env:
-          TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
-          TELEGRAM_CHANNEL_ID: -1001436520490
+      # - name: '发送到TG频道'
+      #   run: |
+      #     python send_to_telegram.py
+      #   env:
+      #     TELEGRAM_API_TOKEN: ${{ secrets.TELEGRAM_API_TOKEN }}
+      #     TELEGRAM_CHANNEL_ID: -1001436520490
                      
       - name: '打完收工,提交代码!'
         run: |
-          git config --local user.email "1129159201@qq.com"
-          git config --local user.name "rcy1314"
+          git config --local user.email "${{ secrets.GIT_MAIL }}"
+          git config --local user.name "${{ secrets.GIT_NAME }}"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.MYGG_TOKEN }}@github.com/${{ github.repository }}
           git pull 
           cp -Rf result.txt logs/${{env.TODAY_DATE}}.txt
