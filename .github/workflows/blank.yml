@@ -80,8 +80,8 @@ jobs:
                      
       - name: '打完收工,提交代码!'
         run: |
-          git config --local user.email "${{ secrets.GIT_MAIL }}"
-          git config --local user.name "${{ secrets.GIT_NAME }}"
+          git config --local user.email "356480127@qq.com"
+          git config --local user.name ${{ secrets.GIT_NAME }}
           git remote set-url origin https://${{ github.actor }}:${{ secrets.MYGG_TOKEN }}@github.com/${{ github.repository }}
           git pull 
           cp -Rf result.txt logs/${{env.TODAY_DATE}}.txt
