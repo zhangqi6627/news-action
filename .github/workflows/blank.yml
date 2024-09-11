@@ -9,17 +9,15 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: 'Checkout codes'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.7
       - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
+        uses: actions/setup-node@v4.0.3
       - name: Use Node.js version 20.x
         run: |
           sudo npm install -g n
           sudo n 18
       - name: python env
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5.2.0
         with:
           python-version: 3.8
       # 安装依赖
