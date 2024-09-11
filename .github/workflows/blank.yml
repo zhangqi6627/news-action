@@ -40,6 +40,7 @@ jobs:
             echo 'FILE_TEXT<<EOF' >> $GITHUB_ENV
             cat ./result.txt >> $GITHUB_ENV
             echo 'EOF' >> $GITHUB_ENV
+            echo secrets.WECHATQUN_WEBHOOK
 
 #       - name: 'Send mail'
 #         uses: dawidd6/action-send-mail@master
@@ -55,14 +56,14 @@ jobs:
 #           content_type: text/html
             
       - name: '企业微信webhook'
-        uses: chf007/action-wechat-work@1.0.8
+        uses: MeanZhang/wecom-group-robot@v1.2
         with:
-          msgtype: text
-          content: |
-            ${{ 'hello world' }}
-          mentioned_list: '["@all"]'
-        env:
-          WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECOM_WEBHOOK_KEY }}
+            # 机器人的key
+            key: ${{ secrets.WECOM_WEBHOOK_KEY }}
+            # 消息类型，支持文本（text）、markdown（markdown）、图片（image）、文件（file）
+            msgtype: text
+            # 消息内容，当消息类型为文件或图片时，content为文件名
+            content: ${{ env.FILE_TEXT }}
 
       - name: '发送到中间件'
         uses: chf007/action-wechat-work@master
@@ -71,7 +72,7 @@ jobs:
           content: |
             ${{env.FILE_TEXT}}
         env:
-          WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECHATQUN_WEBHOOK}}
+          WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECHATQUN_WEBHOOK }}
 
       - name: '发送到TG频道'
         run: |
