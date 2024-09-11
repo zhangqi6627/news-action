@@ -56,24 +56,19 @@ jobs:
 #           from: GitHub Actions
 #           content_type: text/html
             
-      - name: GA薅羊毛专项——企业微信webhook
+      - name: '企业微信webhook'
         uses: walkthunder/action-wecom-webhook@v1.2.2
         with:
-        
           msgtype: text
-          
           content: |
             ${{ 'hello world' }}
         env:
           WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECHAT_WEBHOOK }}
 
-
       - name: '发送到中间件'
         uses: chf007/action-wechat-work@master
         with:
-         
           msgtype: text
-          
           content: |
             ${{env.FILE_TEXT}}
         env:
