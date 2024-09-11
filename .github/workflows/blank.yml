@@ -55,10 +55,9 @@ jobs:
 #           to: 1129159201@qq.com
 #           from: GitHub Actions
 #           content_type: text/html
-
-          
-      - name: '发送到企业微信群'
-        uses: chf007/action-wechat-work@master
+            
+      - name: GA薅羊毛专项——企业微信webhook
+        uses: walkthunder/action-wecom-webhook@v1.2.2
         with:
         
           msgtype: text
