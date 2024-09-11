@@ -64,7 +64,7 @@ jobs:
           msgtype: text
           
           content: |
-            ${{ env.FILE_TEXT }}
+            ${{ "hello world" }}
         env:
           WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECHAT_WEBHOOK }}
 
