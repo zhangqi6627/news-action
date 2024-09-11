@@ -7,6 +7,7 @@ on:
 jobs:
   bot:
     runs-on: ubuntu-22.04
+    environment: blank
     steps:
       - name: 'Checkout codes'
         uses: actions/checkout@v4.1.7
@@ -40,7 +41,6 @@ jobs:
             echo 'FILE_TEXT<<EOF' >> $GITHUB_ENV
             cat ./result.txt >> $GITHUB_ENV
             echo 'EOF' >> $GITHUB_ENV
-            echo secrets.WECHATQUN_WEBHOOK
 
 #       - name: 'Send mail'
 #         uses: dawidd6/action-send-mail@master
@@ -58,7 +58,7 @@ jobs:
       - name: '企业微信webhook'
         uses: MeanZhang/wecom-group-robot@v1.2
         with:
-            key: 1d1a10c6-29d0-4d6c-8a4d-eda1617427bd
+            key: ${{ secrets.WECOM_WEBHOOK_KEY }}
             msgtype: text
             content: ${{ env.FILE_TEXT }}
 
@@ -80,8 +80,8 @@ jobs:
                      
       - name: '打完收工,提交代码!'
         run: |
-          git config --local user.email "356480127@qq.com"
-          git config --local user.name "tiancai123"
+          git config --local user.email "${{ secrets.GIT_MAIL }}"
+          git config --local user.name "${{ secrets.GIT_NAME }}"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.MYGG_TOKEN }}@github.com/${{ github.repository }}
           git pull 
           cp -Rf result.txt logs/${{env.TODAY_DATE}}.txt
