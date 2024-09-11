@@ -55,12 +55,12 @@ jobs:
 #           from: GitHub Actions
 #           content_type: text/html
             
-      # - name: '企业微信webhook'
-      #   uses: MeanZhang/wecom-group-robot@v1.2
-      #   with:
-      #       key: ${{ secrets.WECOM_WEBHOOK_KEY }}
-      #       msgtype: text
-      #       content: ${{ env.FILE_TEXT }}
+      - name: '企业微信webhook'
+        uses: MeanZhang/wecom-group-robot@v1.2
+        with:
+            key: 1d1a10c6-29d0-4d6c-8a4d-eda1617427bd
+            msgtype: text
+            content: ${{ env.FILE_TEXT }}
 
       # - name: '发送到中间件'
       #   uses: chf007/action-wechat-work@master
