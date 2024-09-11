@@ -58,11 +58,8 @@ jobs:
       - name: '企业微信webhook'
         uses: MeanZhang/wecom-group-robot@v1.2
         with:
-            # 机器人的key
             key: ${{ secrets.WECOM_WEBHOOK_KEY }}
-            # 消息类型，支持文本（text）、markdown（markdown）、图片（image）、文件（file）
             msgtype: text
-            # 消息内容，当消息类型为文件或图片时，content为文件名
             content: ${{ env.FILE_TEXT }}
 
       - name: '发送到中间件'
