@@ -55,7 +55,7 @@ jobs:
 #           content_type: text/html
             
       - name: '企业微信webhook'
-        uses: walkthunder/action-wecom-webhook@v1.2.2
+        uses: chf007/action-wechat-work@1.0.8
         with:
           msgtype: text
           content: |
