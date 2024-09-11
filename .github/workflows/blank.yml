@@ -62,6 +62,7 @@ jobs:
           msgtype: text
           content: |
             ${{ 'hello world' }}
+          mentioned_list: '["@all"]'
         env:
           WECHAT_WORK_BOT_WEBHOOK: ${{ secrets.WECHAT_WEBHOOK }}
 
