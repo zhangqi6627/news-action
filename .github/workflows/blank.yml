@@ -42,18 +42,18 @@ jobs:
             cat ./result.txt >> $GITHUB_ENV
             echo 'EOF' >> $GITHUB_ENV
 
-#       - name: 'Send mail'
-#         uses: dawidd6/action-send-mail@master
-#         with:
-#           server_address: smtp.163.com
-#           server_port: 465
-#           username: ${{ secrets.MAIL_USER_NMAE }}
-#           password: ${{ secrets.MAIL_PWD }}
-#           subject: 今日新闻简报推送 (${{env.REPORT_DATE}})
-#           body: file://result.txt
-#           to: 1129159201@qq.com
-#           from: GitHub Actions
-#           content_type: text/html
+      - name: 'Send mail'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: 465
+          username: ${{ secrets.FROM }}
+          password: ${{ secrets.PASSWORD }}
+          subject: 今日新闻简报推送 (${{ env.REPORT_DATE }})
+          body: file://result.txt
+          to: ${{ secrets.TO }}
+          from: GitHub Actions
+          content_type: text/html
             
       - name: '企业微信webhook'
         uses: MeanZhang/wecom-group-robot@v1.2
